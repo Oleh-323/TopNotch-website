@@ -24,7 +24,7 @@ const menuComponents: TypeMenuComponents[] =[
     {key: "Connect & Learn", href: "#connect-learn"}
 ];
 
-const sectionMenu: SectionMenuType[]= [
+const sectionServicesMenu: SectionMenuType[]= [
     {title: "Managed Services", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#managed-services"},
     {title: "Commercial", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#commercial"},
     {title: "Cybersecurity", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#cybersecurity"},
@@ -35,6 +35,15 @@ const sectionMenu: SectionMenuType[]= [
     {title: "Custom Computers", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#custom-computers"}
 ];
 
+const sectionAboutMenu: SectionMenuType[]= [
+    {title: "Why Top Notch?", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#why-top-notch"},
+    {title: "Meet the Team", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#meet-theteam"},
+    {title: "Rates", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#rates"},
+    {title: "Frequently Asked Questions", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#frequently-asked-questions"},
+    {title: "Privacy Policy", description: "Lorem ipsum dolor sit amet consectetur. Felis ullamcorper nunc vel tincidunt ultrices.", href: "#privacy-policy"}
+];
+
+
 function clickMessage(){
     const message= "send me a message on my telegram @ContuctNumber"
     window.alert(message);
@@ -42,9 +51,7 @@ function clickMessage(){
 
 function Header(){
     const [isServicesOpen, setIsServicesOpen] = useState(false);
-
-    function handleMenuEnter(){setIsServicesOpen(true)}
-    function handleMenuDown(){setIsServicesOpen(false)}
+    const [isAboutOpen, setIsAboutOpen] = useState(false);
 
     function handleMenuComponent(menuKey: string) {
         if (menuKey == "Services") {
@@ -52,7 +59,14 @@ function Header(){
         } else {
             setIsServicesOpen(false);
         }
+        if (menuKey == "About") {
+            setIsAboutOpen(true);
+        } else {
+            setIsAboutOpen(false);
+        }
     }
+
+
 
     return (
         <>
@@ -69,7 +83,15 @@ function Header(){
                     <button onClick={clickMessage}>Contact us <img src={arrowUp.src} /></button>
                 </header>
                 <section style={{ "display": isServicesOpen ? "grid": "none" }} className={style.particle} >
-                    {sectionMenu.map((index)=>
+                    {sectionServicesMenu.map((index)=>
+                        <a className={style.part} title={index.title} href={index.href}>
+                            <h1>{index.title}</h1>
+                            <span className={style.description}>{index.description}</span>
+                        </a>
+                    )}
+                </section>
+                <section style={{ "display": isAboutOpen ? "grid": "none" }} className={style.particle} >
+                    {sectionAboutMenu.map((index)=>
                         <a className={style.part} title={index.title} href={index.href}>
                             <h1>{index.title}</h1>
                             <span className={style.description}>{index.description}</span>
